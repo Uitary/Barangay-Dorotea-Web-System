@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Security Zone — Dorotea 99'ers</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="images/logo/logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #0a0e1a;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0 0 60px;
+    }
+
+    /* ── TOP NAV ── */
+    .sec-topbar {
+      width: 100%;
+      background: linear-gradient(135deg, #0a2444, #1e73be);
+      padding: 14px 28px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.4);
+    }
+    .sec-topbar img { width: 38px; height: 38px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.3); }
+    .sec-topbar-title { color: #fff; font-family: 'Cinzel', serif; font-size: 1rem; font-weight: 700; letter-spacing: 0.5px; }
+    .sec-topbar-sub { color: rgba(255,255,255,0.6); font-size: 11px; margin-top: 1px; }
+    .sec-topbar-back {
+      margin-left: auto;
+      background: rgba(255,255,255,0.12);
+      border: 1.5px solid rgba(255,255,255,0.25);
+      color: #fff;
+      border-radius: 8px;
+      padding: 7px 16px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .sec-topbar-back:hover { background: rgba(255,255,255,0.22); }
+
+    /* ── PIN GATE ── */
+    #pinGate {
+      width: 100%;
+      max-width: 500px;
+      margin: 60px auto 0;
+      padding: 0 20px;
+    }
+    .pin-card {
+      background: linear-gradient(145deg, #111827, #1a2340);
+      border: 2px solid #1e3a5f;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.6);
+    }
+    .pin-card-header {
+      background: linear-gradient(135deg, #0a2444, #1e73be);
+      padding: 32px 28px 24px;
+      text-align: center;
+    }
+    .pin-lock-icon {
+      width: 72px;
+      height: 72px;
+      background: rgba(255,255,255,0.1);
+      border: 2px solid rgba(255,255,255,0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+    }
+    .pin-lock-icon i { font-size: 30px; color: #fff; }
+    .pin-card-header h2 { color: #fff; font-family: 'Cinzel', serif; font-size: 1.3rem; margin-bottom: 6px; }
+    .pin-card-header p { color: rgba(255,255,255,0.65); font-size: 12.5px; line-height: 1.6; }
+
+    .pin-card-body { padding: 28px; }
+
+    .pin-info-box {
+      background: rgba(30, 115, 190, 0.12);
+      border: 1px solid rgba(30,115,190,0.3);
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 12.5px;
+      color: #90c8ff;
+      margin-bottom: 22px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      line-height: 1.6;
+    }
+    .pin-info-box i { color: #4da6ff; flex-shrink: 0; margin-top: 2px; }
+
+    .pin-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    /* ── PIN DOT DISPLAY ── */
+    .pin-dots {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+    .pin-dot {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.3);
+      background: transparent;
+      transition: background 0.2s, border-color 0.2s, transform 0.15s;
+    }
+    .pin-dot.filled {
+      background: #1e73be;
+      border-color: #4da6ff;
+      transform: scale(1.15);
+    }
+
+    /* ── NUM PAD ── */
+    .numpad {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .numpad-btn {
+      background: rgba(255,255,255,0.07);
+      border: 1.5px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      padding: 16px;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.1s;
+      user-select: none;
+    }
+    .numpad-btn:hover { background: rgba(255,255,255,0.14); }
+    .numpad-btn:active { transform: scale(0.93); background: rgba(30,115,190,0.3); }
+    .numpad-btn.delete-btn { font-size: 16px; color: #ff8a80; }
+    .numpad-btn.clear-btn  { font-size: 13px; color: #aaa; }
+    .numpad-btn.enter-btn  {
+      background: linear-gradient(135deg, #1e73be, #0a2444);
+      border-color: transparent;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+    }
+    .numpad-btn.enter-btn:hover { opacity: 0.88; }
+
+    /* ── ATTEMPT DOTS ── */
+    .attempt-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .att-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: #27ae60;
+      transition: background 0.3s;
+    }
+
+    /* ── ALERT ── */
+    .pin-alert {
+      display: none;
+      border-radius: 9px;
+      padding: 10px 14px;
+      font-size: 12.5px;
+      margin-bottom: 14px;
+      text-align: center;
+    }
+    .pin-alert.error   { background: rgba(231,76,60,0.15); border: 1px solid rgba(231,76,60,0.4); color: #ff8a80; }
+    .pin-alert.success { background: rgba(39,174,96,0.15); border: 1px solid rgba(39,174,96,0.4); color: #80e8a8; }
+
+    /* ── THREE-COLUMN GRID for unlocked content ── */
+    .sec-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      align-items: stretch;
+    }
+    .sec-grid > div {
+      display: flex;
+      flex-direction: column;
+    }
+    .sec-grid > div .sec-card {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 0;
+    }
+    .sec-grid > div .sec-field-group {
+      flex: 1;
+    }
+    .sec-grid-full { grid-column: 1 / -1; }
+    @media (max-width: 1000px) {
+      .sec-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .sec-grid { grid-template-columns: 1fr; }
+      #securityContent { padding: 0 16px; }
+    }
+
+    /* ── MAIN CONTENT (hidden until unlocked) ── */
+    #securityContent { display: none; width: 100%; max-width: 1300px; margin: 40px auto 0; padding: 0 40px; }
+
+    .sec-section-title {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .sec-section-icon {
+      width: 46px; height: 46px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .sec-section-icon.blue  { background: linear-gradient(135deg, #1e73be, #0a2444); }
+    .sec-section-icon.amber { background: linear-gradient(135deg, #f0a500, #c87800); }
+    .sec-section-icon i { color: #fff; font-size: 18px; }
+    .sec-section-label h3 { color: #fff; font-size: 1rem; font-weight: 700; font-family: 'Cinzel', serif; }
+    .sec-section-label p  { color: rgba(255,255,255,0.5); font-size: 12px; margin-top: 2px; text-align: center; }
+
+    .sec-card {
+      background: linear-gradient(145deg, #111827, #1a2340);
+      border-radius: 18px;
+      padding: 24px;
+      margin-bottom: 24px;
+      border: 1.5px solid #1e3a5f;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.35);
+    }
+
+    .sec-card label {
+      font-size: 12px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.6);
+      display: block;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+    .sec-card label i { margin-right: 6px; }
+
+    .sec-input {
+      width: 100%;
+      padding: 12px 44px 12px 14px;
+      border: 1.5px solid rgba(255,255,255,0.1);
+      border-radius: 9px;
+      background: rgba(255,255,255,0.06);
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      font-size: 13.5px;
+      outline: none;
+      transition: border-color 0.2s;
+      box-sizing: border-box;
+    }
+    .sec-input:focus { border-color: #1e73be; background: rgba(30,115,190,0.08); }
+    .sec-input.amber:focus { border-color: #f0a500; background: rgba(240,165,0,0.08); }
+    .sec-input::placeholder { color: rgba(255,255,255,0.25); }
+
+    .input-wrap { position: relative; display: flex; align-items: center; }
+    .input-wrap .eye-btn {
+      position: absolute; right: 12px;
+      background: none; border: none;
+      cursor: pointer; color: rgba(255,255,255,0.3);
+      font-size: 14px; padding: 0;
+      display: flex; align-items: center;
+      transition: color 0.2s;
+    }
+    .input-wrap .eye-btn:hover { color: rgba(255,255,255,0.7); }
+
+    .sec-field-group { display: grid; gap: 14px; margin-bottom: 18px; }
+
+    .sec-btn {
+      width: 100%;
+      padding: 13px;
+      border: none;
+      border-radius: 10px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      transition: opacity 0.2s;
+    }
+    .sec-btn:hover { opacity: 0.85; }
+    .sec-btn.blue  { background: linear-gradient(135deg, #1e73be, #0a2444); color: #fff; }
+    .sec-btn.amber { background: linear-gradient(135deg, #f0a500, #c87800); color: #fff; }
+
+    .sec-alert {
+      display: none;
+      border-radius: 9px;
+      padding: 10px 14px;
+      font-size: 12.5px;
+      margin-bottom: 14px;
+    }
+    .sec-alert.error   { background: rgba(231,76,60,0.12); border: 1px solid rgba(231,76,60,0.35); color: #ff8a80; }
+    .sec-alert.success { background: rgba(39,174,96,0.12); border: 1px solid rgba(39,174,96,0.35); color: #80e8a8; }
+
+    .badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    .badge.not-set { background: #fff3cd; color: #856404; border: 1px solid #ffc107; }
+    .badge.set     { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+    .badge.default { background: #fff3cd; color: #856404; border: 1px solid #ffc107; }
+    .badge.custom  { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+
+    .info-note {
+      background: rgba(240,165,0,0.1);
+      border: 1px solid rgba(240,165,0,0.3);
+      border-radius: 9px;
+      padding: 11px 14px;
+      font-size: 12px;
+      color: #ffd180;
+      display: flex; align-items: flex-start; gap: 9px;
+      margin-bottom: 18px;
+      line-height: 1.6;
+    }
+    .info-note i { flex-shrink: 0; margin-top: 2px; }
+
+    /* Lock strip at top of unlocked content */
+    .relock-strip {
+      background: linear-gradient(135deg, rgba(39,174,96,0.15), rgba(39,174,96,0.08));
+      border: 1px solid rgba(39,174,96,0.35);
+      border-radius: 12px;
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+    .relock-strip span { font-size: 13px; font-weight: 700; color: #80e8a8; }
+    .relock-strip small { font-size: 11px; color: rgba(128,232,168,0.7); margin-left: 4px; }
+    .relock-btn {
+      margin-left: auto;
+      background: rgba(255,255,255,0.07);
+      border: 1.5px solid rgba(39,174,96,0.4);
+      border-radius: 8px;
+      padding: 7px 16px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      color: #80e8a8;
+      cursor: pointer;
+      display: flex; align-items: center; gap: 7px;
+      transition: background 0.2s;
+    }
+    .relock-btn:hover { background: rgba(39,174,96,0.2); }
+
+    /* shake animation for wrong pin */
+    @keyframes shake {
+      0%,100%{transform:translateX(0)}
+      20%{transform:translateX(-6px)}
+      40%{transform:translateX(6px)}
+      60%{transform:translateX(-4px)}
+      80%{transform:translateX(4px)}
+    }
+    .shake { animation: shake 0.4s ease; }
+  </style>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <div class="sec-topbar">
+    <img src="images/logo/logo.png" alt="Logo">
+    <div>
+      <div class="sec-topbar-title">Security Zone</div>
+      <div class="sec-topbar-sub">Barangay 99 — Admin Restricted</div>
+    </div>
+    <a href="admin.html" class="sec-topbar-back"><i class="fa-solid fa-arrow-left"></i> Back to Admin</a>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       PIN GATE
+  ══════════════════════════════════════ -->
+  <div id="pinGate">
+    <div class="pin-card">
+      <div class="pin-card-header">
+        <div class="pin-lock-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <h2>Security Zone</h2>
+        <p>This area is protected.<br>Enter your secret PIN to continue.</p>
+      </div>
+      <div class="pin-card-body">
+        <div class="pin-info-box">
+          <i class="fa-solid fa-circle-info"></i>
+          <span>Security Questions &amp; Emergency Reset Code are stored here. Only authorized admins with the PIN can access this page.</span>
+        </div>
+
+        <!-- Attempt dots -->
+        <div class="attempt-dots">
+          <span id="attDot1" class="att-dot"></span>
+          <span id="attDot2" class="att-dot"></span>
+          <span id="attDot3" class="att-dot"></span>
+        </div>
+
+        <!-- PIN display -->
+        <span class="pin-label" style="text-align:center;display:block;">Enter PIN</span>
+        <div class="pin-dots" id="pinDots">
+          <span class="pin-dot" id="pd1"></span>
+          <span class="pin-dot" id="pd2"></span>
+          <span class="pin-dot" id="pd3"></span>
+          <span class="pin-dot" id="pd4"></span>
+        </div>
+
+        <!-- Alert -->
+        <div id="pinAlert" class="pin-alert"></div>
+
+        <!-- Numpad -->
+        <div class="numpad">
+          <button class="numpad-btn" onclick="pinDigit('1')">1</button>
+          <button class="numpad-btn" onclick="pinDigit('2')">2</button>
+          <button class="numpad-btn" onclick="pinDigit('3')">3</button>
+          <button class="numpad-btn" onclick="pinDigit('4')">4</button>
+          <button class="numpad-btn" onclick="pinDigit('5')">5</button>
+          <button class="numpad-btn" onclick="pinDigit('6')">6</button>
+          <button class="numpad-btn" onclick="pinDigit('7')">7</button>
+          <button class="numpad-btn" onclick="pinDigit('8')">8</button>
+          <button class="numpad-btn" onclick="pinDigit('9')">9</button>
+          <button class="numpad-btn clear-btn" onclick="pinClear()">CLR</button>
+          <button class="numpad-btn" onclick="pinDigit('0')">0</button>
+          <button class="numpad-btn delete-btn" onclick="pinDelete()"><i class="fa-solid fa-delete-left"></i></button>
+        </div>
+
+        <button class="numpad-btn enter-btn" style="width:100%;border-radius:12px;padding:16px;" onclick="pinSubmit()">
+          <i class="fa-solid fa-unlock-keyhole"></i> Unlock
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SECURITY ZONE CONTENT (shown after PIN)
+  ══════════════════════════════════════ -->
+  <div id="securityContent">
+
+    <!-- Re-lock strip -->
+    <div class="relock-strip sec-grid-full" style="margin-bottom:28px;">
+      <i class="fa-solid fa-unlock-keyhole" style="color:#80e8a8;font-size:15px;"></i>
+      <span>Security Zone Unlocked</span>
+      <small id="autoLockTimer"></small>
+      <button class="relock-btn" onclick="lockAndReturn()"><i class="fa-solid fa-lock"></i> Lock &amp; Exit</button>
+    </div>
+
+    <div class="sec-grid">
+
+      <!-- ── COL 1: SECURITY QUESTIONS ── -->
+      <div>
+        <div class="sec-section-title">
+          <div class="sec-section-icon blue"><i class="fa-solid fa-shield-halved"></i></div>
+          <div class="sec-section-label">
+            <h3>Security Questions <span id="secQBadge" class="badge not-set">Not Set</span></h3>
+            <p>Used for identity verification during password recovery</p>
+          </div>
+        </div>
+        <div class="sec-card">
+          <div class="info-note">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <span>Set these answers so you can recover your account if you forget your password. Answers are <strong>not case-sensitive</strong>.</span>
+          </div>
+          <div id="secq-alert" class="sec-alert"></div>
+          <div class="sec-field-group">
+            <div>
+              <label><i class="fa-solid fa-utensils" style="color:#4da6ff;"></i>What is your favorite food?</label>
+              <div class="input-wrap">
+                <input type="password" id="szQ1" class="sec-input" placeholder="e.g. Adobo, Sinigang...">
+                <button class="eye-btn" onclick="toggleVis('szQ1','eyeQ1')" tabindex="-1"><i id="eyeQ1" class="fa-solid fa-eye"></i></button>
+              </div>
+            </div>
+            <div>
+              <label><i class="fa-solid fa-palette" style="color:#4da6ff;"></i>What is your favorite color?</label>
+              <div class="input-wrap">
+                <input type="password" id="szQ2" class="sec-input" placeholder="e.g. Blue, Red...">
+                <button class="eye-btn" onclick="toggleVis('szQ2','eyeQ2')" tabindex="-1"><i id="eyeQ2" class="fa-solid fa-eye"></i></button>
+              </div>
+            </div>
+            <div>
+              <label><i class="fa-solid fa-graduation-cap" style="color:#4da6ff;"></i>What is the name of your elementary school?</label>
+              <div class="input-wrap">
+                <input type="password" id="szQ3" class="sec-input" placeholder="e.g. Caloocan Elementary School...">
+                <button class="eye-btn" onclick="toggleVis('szQ3','eyeQ3')" tabindex="-1"><i id="eyeQ3" class="fa-solid fa-eye"></i></button>
+              </div>
+            </div>
+          </div>
+          <button class="sec-btn blue" onclick="saveSecurityQuestions()">
+            <i class="fa-solid fa-floppy-disk"></i> Save Security Questions
+          </button>
+        </div>
+      </div>
+
+      <!-- ── COL 2: EMERGENCY RESET CODE ── -->
+      <div>
+        <div class="sec-section-title">
+          <div class="sec-section-icon amber"><i class="fa-solid fa-key"></i></div>
+          <div class="sec-section-label">
+            <h3>Emergency Reset Code <span id="emergBadge" class="badge default">Default</span></h3>
+            <p>Resets credentials if you're completely locked out</p>
+          </div>
+        </div>
+        <div class="sec-card">
+          <div class="info-note">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <span>This code lets you <strong>reset your credentials</strong> if you're locked out. Use a strong, memorable code and keep it somewhere very safe.</span>
+          </div>
+          <div id="emerg-alert" class="sec-alert"></div>
+          <div class="sec-field-group">
+            <div>
+              <label><i class="fa-solid fa-lock" style="color:#f0a500;"></i>New Emergency Code</label>
+              <div class="input-wrap">
+                <input type="password" id="szECode" class="sec-input amber" placeholder="e.g. BARANGAY99-SECRET">
+                <button class="eye-btn" onclick="toggleVis('szECode','eyeECode')" tabindex="-1"><i id="eyeECode" class="fa-solid fa-eye"></i></button>
+              </div>
+            </div>
+            <div>
+              <label><i class="fa-solid fa-lock" style="color:#f0a500;"></i>Confirm Emergency Code</label>
+              <input type="password" id="szECodeConfirm" class="sec-input amber" placeholder="Re-enter the same code">
+            </div>
+            <div>
+              <label><i class="fa-solid fa-unlock-keyhole" style="color:#f0a500;"></i>Current Admin Password (to confirm it's you)</label>
+              <input type="password" id="szECodePw" class="sec-input amber" placeholder="Enter your current admin password">
+            </div>
+          </div>
+          <button class="sec-btn amber" onclick="saveEmergencyCode()">
+            <i class="fa-solid fa-floppy-disk"></i> Save Emergency Code
+          </button>
+        </div>
+      </div>
+
+      <!-- ── COL 3: CHANGE SECURITY PIN ── -->
+      <div>
+        <div class="sec-section-title">
+          <div class="sec-section-icon" style="background:linear-gradient(135deg,#6c3483,#4a235a);"><i class="fa-solid fa-hashtag"></i></div>
+          <div class="sec-section-label">
+            <h3>Change Security Zone PIN</h3>
+            <p>Update the PIN used to access this page</p>
+          </div>
+        </div>
+        <div class="sec-card">
+          <div class="info-note" style="background:rgba(108,52,131,0.12);border-color:rgba(108,52,131,0.3);color:#d7aef7;">
+            <i class="fa-solid fa-circle-info" style="color:#d7aef7;"></i>
+            <span>Choose a new 4-digit PIN. You'll need it every time you open this Security Zone page.</span>
+          </div>
+          <div id="changepin-alert" class="sec-alert"></div>
+          <div class="sec-field-group">
+            <div>
+              <label><i class="fa-solid fa-lock" style="color:#d7aef7;"></i>New PIN (4 digits)</label>
+              <input type="password" id="szNewPin" class="sec-input" placeholder="e.g. 1234" maxlength="4"
+                style="border-color:rgba(108,52,131,0.4);"
+                oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+            </div>
+            <div>
+              <label><i class="fa-solid fa-lock" style="color:#d7aef7;"></i>Confirm New PIN</label>
+              <input type="password" id="szNewPinConfirm" class="sec-input" placeholder="Re-enter PIN" maxlength="4"
+                style="border-color:rgba(108,52,131,0.4);"
+                oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+            </div>
+          </div>
+          <button class="sec-btn" onclick="changeSecZonePin()"
+            style="background:linear-gradient(135deg,#6c3483,#4a235a);color:#fff;">
+            <i class="fa-solid fa-floppy-disk"></i> Update PIN
+          </button>
+        </div>
+      </div>
+
+    </div><!-- end .sec-grid -->
+
+  </div><!-- end #securityContent -->
+
+
+<script>
+/* ════════════════════════════════════════════
+   SECRET PIN CONFIG
+   Change the default PIN here — it can also be
+   customized by storing 'securityZonePin' in localStorage.
+   Default: 9999
+════════════════════════════════════════════ */
+var DEFAULT_PIN = '9999';
+
+/* ════════════════════════════════════════════
+   PIN GATE LOGIC
+════════════════════════════════════════════ */
+var _pinBuffer   = '';
+var _pinAttempts = 0;
+var _pinMaxLen   = 4;
+var _autoLockTimer = null;
+var _autoLockCountdown = null;
+var _autoLockMs = 5 * 60 * 1000; // 5 min auto-lock
+
+function getPin() {
+  return localStorage.getItem('securityZonePin') || DEFAULT_PIN;
+}
+
+function pinDigit(d) {
+  if (_pinBuffer.length >= _pinMaxLen) return;
+  _pinBuffer += d;
+  updatePinDots();
+  if (_pinBuffer.length === _pinMaxLen) {
+    // Short pause then auto-submit for UX feel
+    setTimeout(pinSubmit, 180);
+  }
+}
+
+function pinDelete() {
+  _pinBuffer = _pinBuffer.slice(0, -1);
+  updatePinDots();
+}
+
+function pinClear() {
+  _pinBuffer = '';
+  updatePinDots();
+}
+
+function updatePinDots() {
+  for (var i = 1; i <= _pinMaxLen; i++) {
+    var dot = document.getElementById('pd' + i);
+    if (!dot) continue;
+    if (i <= _pinBuffer.length) {
+      dot.classList.add('filled');
+    } else {
+      dot.classList.remove('filled');
+    }
+  }
+}
+
+function pinSubmit() {
+  var alertEl = document.getElementById('pinAlert');
+
+  if (!_pinBuffer) {
+    showPinAlert('error', 'Please enter your PIN.');
+    return;
+  }
+  if (_pinBuffer.length < _pinMaxLen) {
+    showPinAlert('error', 'PIN must be ' + _pinMaxLen + ' digits.');
+    _pinBuffer = '';
+    updatePinDots();
+    return;
+  }
+
+  if (_pinBuffer === getPin()) {
+    // ✅ Correct
+    showPinAlert('success', 'PIN verified! Loading Security Zone…');
+    _pinAttempts = 0;
+    updateAttDots(0);
+    setTimeout(function() {
+      document.getElementById('pinGate').style.display = 'none';
+      document.getElementById('securityContent').style.display = 'block';
+      loadSecurityData();
+      startAutoLock();
+    }, 600);
+  } else {
+    // ❌ Wrong
+    _pinAttempts++;
+    updateAttDots(_pinAttempts);
+    _pinBuffer = '';
+    updatePinDots();
+
+    // Shake dots
+    var dotsEl = document.getElementById('pinDots');
+    dotsEl.classList.remove('shake');
+    void dotsEl.offsetWidth; // reflow
+    dotsEl.classList.add('shake');
+
+    if (_pinAttempts >= 3) {
+      showPinAlert('error', 'Too many wrong attempts. Locked for 5 minutes.');
+      disableNumpad(true);
+      setTimeout(function() {
+        _pinAttempts = 0;
+        updateAttDots(0);
+        disableNumpad(false);
+        hidePinAlert();
+      }, 5 * 60 * 1000);
+    } else {
+      var left = 3 - _pinAttempts;
+      showPinAlert('error', 'Incorrect PIN. Please try again.');
+    }
+  }
+}
+
+function showPinAlert(type, msg) {
+  var el = document.getElementById('pinAlert');
+  el.className = 'pin-alert ' + type;
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+function hidePinAlert() {
+  document.getElementById('pinAlert').style.display = 'none';
+}
+
+function updateAttDots(wrongCount) {
+  for (var i = 1; i <= 3; i++) {
+    var dot = document.getElementById('attDot' + i);
+    if (dot) dot.style.background = i <= wrongCount ? '#e74c3c' : '#27ae60';
+  }
+}
+
+function disableNumpad(disable) {
+  document.querySelectorAll('.numpad-btn').forEach(function(btn) {
+    btn.disabled = disable;
+    btn.style.opacity = disable ? '0.4' : '1';
+  });
+}
+
+// Keyboard support
+document.addEventListener('keydown', function(e) {
+  if (document.getElementById('pinGate').style.display === 'none') return;
+  if (e.key >= '0' && e.key <= '9') pinDigit(e.key);
+  else if (e.key === 'Backspace') pinDelete();
+  else if (e.key === 'Enter') pinSubmit();
+  else if (e.key === 'Escape') pinClear();
+});
+
+/* ════════════════════════════════════════════
+   AUTO-LOCK
+════════════════════════════════════════════ */
+function startAutoLock() {
+  clearAutoLock();
+  var expiresAt = Date.now() + _autoLockMs;
+  var timerEl = document.getElementById('autoLockTimer');
+
+  _autoLockCountdown = setInterval(function() {
+    var ms = expiresAt - Date.now();
+    if (ms <= 0) {
+      clearAutoLock();
+      lockAndReturn();
+      return;
+    }
+    var mins = Math.floor(ms / 60000);
+    var secs = Math.floor((ms % 60000) / 1000);
+    if (timerEl) timerEl.textContent = '— auto-locks in ' + mins + ':' + (secs < 10 ? '0' : '') + secs;
+  }, 1000);
+
+  _autoLockTimer = setTimeout(function() {
+    clearAutoLock();
+    lockAndReturn();
+  }, _autoLockMs);
+}
+
+function clearAutoLock() {
+  if (_autoLockTimer)     { clearTimeout(_autoLockTimer);      _autoLockTimer = null; }
+  if (_autoLockCountdown) { clearInterval(_autoLockCountdown); _autoLockCountdown = null; }
+  var timerEl = document.getElementById('autoLockTimer');
+  if (timerEl) timerEl.textContent = '';
+}
+
+function lockAndReturn() {
+  clearAutoLock();
+  // Re-show PIN gate
+  document.getElementById('securityContent').style.display = 'none';
+  document.getElementById('pinGate').style.display = 'block';
+  _pinBuffer = '';
+  updatePinDots();
+  hidePinAlert();
+  _pinAttempts = 0;
+  updateAttDots(0);
+  // Scroll to top
+  window.scrollTo(0, 0);
+}
+
+/* ════════════════════════════════════════════
+   SECURITY CONTENT LOGIC
+════════════════════════════════════════════ */
+function loadSecurityData() {
+  // Security questions badge
+  var secQ = JSON.parse(localStorage.getItem('adminSecurityQuestions') || '{}');
+  var secQBadge = document.getElementById('secQBadge');
+  if (secQ.q1 && secQ.q2 && secQ.q3) {
+    secQBadge.className = 'badge set'; secQBadge.textContent = 'Set';
+    // Pre-fill with masked placeholder
+    document.getElementById('szQ1').placeholder = '••••••••';
+    document.getElementById('szQ2').placeholder = '••••••••';
+    document.getElementById('szQ3').placeholder = '••••••••';
+  } else {
+    secQBadge.className = 'badge not-set'; secQBadge.textContent = 'Not Set';
+  }
+
+  // Emergency code badge
+  var emergBadge = document.getElementById('emergBadge');
+  var hasCustom = !!localStorage.getItem('adminEmergencyCode');
+  emergBadge.className = 'badge ' + (hasCustom ? 'custom' : 'default');
+  emergBadge.textContent = hasCustom ? 'Custom' : 'Default';
+
+  // Clear fields on load
+  ['szQ1','szQ2','szQ3','szECode','szECodeConfirm','szECodePw'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+}
+
+function toggleVis(inputId, iconId) {
+  var input = document.getElementById(inputId);
+  var icon  = document.getElementById(iconId);
+  if (!input) return;
+  if (input.type === 'password') {
+    input.type = 'text'; if (icon) icon.className = 'fa-solid fa-eye-slash';
+  } else {
+    input.type = 'password'; if (icon) icon.className = 'fa-solid fa-eye';
+  }
+}
+
+function showSecAlert(id, type, msg) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  el.className = 'sec-alert ' + type;
+  el.textContent = msg;
+  el.style.display = 'block';
+  if (type === 'success') {
+    setTimeout(function() { el.style.display = 'none'; }, 3500);
+  }
+}
+
+/* ── Save Security Questions ── */
+function saveSecurityQuestions() {
+  var q1 = (document.getElementById('szQ1').value || '').trim();
+  var q2 = (document.getElementById('szQ2').value || '').trim();
+  var q3 = (document.getElementById('szQ3').value || '').trim();
+
+  if (!q1 || !q2 || !q3) {
+    showSecAlert('secq-alert', 'error', 'Please fill in all three security answers.');
+    return;
+  }
+  if (q1.length < 2 || q2.length < 2 || q3.length < 2) {
+    showSecAlert('secq-alert', 'error', 'Each answer must be at least 2 characters long.');
+    return;
+  }
+
+  localStorage.setItem('adminSecurityQuestions', JSON.stringify({
+    q1: q1.toLowerCase().trim(),
+    q2: q2.toLowerCase().trim(),
+    q3: q3.toLowerCase().trim()
+  }));
+
+  var badge = document.getElementById('secQBadge');
+  badge.className = 'badge set'; badge.textContent = 'Set';
+
+  document.getElementById('szQ1').value = '';
+  document.getElementById('szQ2').value = '';
+  document.getElementById('szQ3').value = '';
+  showSecAlert('secq-alert', 'success', '✓ Security questions saved successfully!');
+}
+
+/* ── Save Emergency Code ── */
+function saveEmergencyCode() {
+  var newCode  = (document.getElementById('szECode').value || '').trim();
+  var confCode = (document.getElementById('szECodeConfirm').value || '').trim();
+  var curPw    = (document.getElementById('szECodePw').value || '').trim();
+
+  if (!newCode || !confCode || !curPw) {
+    showSecAlert('emerg-alert', 'error', 'Please fill in all three fields.');
+    return;
+  }
+
+  var storedCreds = JSON.parse(localStorage.getItem('adminCredentials') || '{}');
+  var validPass   = storedCreds.password || 'admin123';
+
+  if (curPw !== validPass) {
+    showSecAlert('emerg-alert', 'error', 'Incorrect current admin password. Code not saved.');
+    return;
+  }
+  if (newCode.length < 6) {
+    showSecAlert('emerg-alert', 'error', 'Emergency code must be at least 6 characters.');
+    return;
+  }
+  if (newCode !== confCode) {
+    showSecAlert('emerg-alert', 'error', 'Codes do not match. Please re-enter.');
+    return;
+  }
+
+  localStorage.setItem('adminEmergencyCode', newCode);
+
+  var badge = document.getElementById('emergBadge');
+  badge.className = 'badge custom'; badge.textContent = 'Custom';
+
+  document.getElementById('szECode').value = '';
+  document.getElementById('szECodeConfirm').value = '';
+  document.getElementById('szECodePw').value = '';
+  showSecAlert('emerg-alert', 'success', '✓ Emergency code saved! Keep it somewhere safe.');
+}
+
+/* ── Change PIN (from inside security.html) ── */
+function changeSecZonePin() {
+  var newPin  = (document.getElementById('szNewPin').value || '').trim();
+  var confPin = (document.getElementById('szNewPinConfirm').value || '').trim();
+
+  if (!newPin || !confPin) {
+    showSecAlert('changepin-alert', 'error', 'Please fill in both PIN fields.');
+    return;
+  }
+  if (!/^\d{4}$/.test(newPin)) {
+    showSecAlert('changepin-alert', 'error', 'PIN must be exactly 4 digits (numbers only).');
+    return;
+  }
+  if (newPin !== confPin) {
+    showSecAlert('changepin-alert', 'error', 'PINs do not match. Please re-enter.');
+    return;
+  }
+  localStorage.setItem('securityZonePin', newPin);
+  document.getElementById('szNewPin').value = '';
+  document.getElementById('szNewPinConfirm').value = '';
+  showSecAlert('changepin-alert', 'success', '✓ PIN updated! Your new PIN is now active.');
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dorotea 99'ers Barangay Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="images/logo/logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<header class="header" id="mainHeader">
+  <div class="logo">
+    <img src="images/logo/logo.png" alt="Barangay Logo">
+    <h2>Dorotea 99'ers</h2>
+  </div>
+  <nav class="nav" id="mainNav">
+    <a href="#" onclick="smoothNav('home');return false;">Home</a>
+    <a href="#" onclick="smoothNavAnchor('services-section');return false;">Services</a>
+    <a href="#" onclick="smoothNavAnchor('history-section');return false;">About</a>
+    <a href="#" onclick="smoothNavAnchor('personnel');return false;">Officials</a>
+    <a href="#" onclick="smoothNavAnchor('contact');return false;">Contact</a>
+  </nav>
+  <div class="land-nav-buttons" id="headerButtons">
+    <a class="btn btn-primary btn-sm" href="#" onclick="navigateWithTransition('residents.html');return false;">Resident's Login</a>
+  </div>
+</header>
+
+  <!-- Page Transition Overlay -->
+  <div class="page-transition-overlay" id="pageTransOverlay">
+    <div class="pt-spinner"></div>
+    <div class="pt-label">Loading…</div>
+  </div>
+
+<div id="pageContainer">
+
+<!-- ================= HOME ================= -->
+<section id="home" class="page" style="display:block;padding:0;margin:0;border:none;">
+
+  <section class="hero" style="margin:0;border:none;">
+    <div class="hero-text" style="margin-top:-120px;">
+      <h1>Welcome to Barangay 99 Zone 9 Dist. II</h1>
+      <p>Welcome to the official Barangay Management System of Dorotea Community, Caloocan City. This platform helps residents stay updated with announcements, community events, and barangay services.</p>
+      <button class="primary-btn" onclick="smoothNavAnchor('history-section')">Learn More</button>
+      <div class="hero-stats">
+        <div class="hero-stat hero-stat-highlight">
+          <strong>99</strong>
+          <span>Barangay No.</span>
+        </div>
+        <div class="hero-stat hero-stat-highlight">
+          <strong>Zone 9</strong>
+          <span>District II</span>
+        </div>
+        <div class="hero-stat">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services-section" class="services-section fade-in-section">
+    <h2 class="section-title">Our Services</h2>
+    <div class="services-grid">
+      <div class="service-card" onclick="navigateWithTransition('residents.html')">
+        <i class="fa-solid fa-file-lines"></i>
+        <h3>Barangay Clearance</h3>
+        <p>Request your barangay clearance online for employment, travel, or legal purposes.</p>
+      </div>
+      <div class="service-card" onclick="navigateWithTransition('residents.html')">
+        <i class="fa-solid fa-house-chimney-user"></i>
+        <h3>Certificate of Residency</h3>
+        <p>Proof that you are a legitimate resident of Barangay 99.</p>
+      </div>
+      <div class="service-card" onclick="navigateWithTransition('residents.html')">
+        <i class="fa-solid fa-hand-holding-heart"></i>
+        <h3>Certificate of Indigency</h3>
+        <p>For residents qualifying for government assistance and social services.</p>
+      </div>
+      <div class="service-card" onclick="navigateWithTransition('residents.html')">
+        <i class="fa-solid fa-store"></i>
+        <h3>Business Certificate</h3>
+        <p>Certificate for businesses operating within the barangay.</p>
+      </div>
+      <div class="service-card" onclick="navigateWithTransition('residents.html')">
+        <i class="fa-solid fa-bullhorn"></i>
+        <h3>Community Forum</h3>
+        <p>Share concerns, suggestions, and feedback with barangay officials.</p>
+      </div>
+      <div class="service-card" onclick="navigateWithTransition('residents.html')">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <h3>Case Report</h3>
+        <p>File and track case reports within the barangay.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BRIEF HISTORY -->
+  <section id="history-section" class="history-section fade-in-section">
+    <div class="history-inner">
+      <div class="history-image-side">
+        <img src="images/barangay/Baranggay.jpg" alt="Barangay 99 Multi-Purpose Hall" onerror="this.style.background='#0f2f4f';this.alt='Barangay 99';">
+        <div class="history-badge">Est. <span>Caloocan City</span></div>
+      </div>
+      <div class="history-text-side">
+        <p class="history-subtitle">Our Story</p>
+        <h2>A Brief History of Barangay 99</h2>
+        <p>Barangay 99, Zone 9, District II is one of the vibrant communities of Caloocan City. Known locally as the Dorotea community, it has grown over the decades into a close-knit neighborhood committed to public service and community welfare.</p>
+        <p>Under the leadership of Punong Barangay Danilo C. Caldo and the dedicated Barangay Council, Barangay 99 continues to uphold the values of service, unity, and progress — ensuring every resident has access to the support and services they deserve.</p>
+        <p>This digital portal is part of the barangay's modernization initiative — bringing governance closer to every household in Zone 9.</p>
+        <button class="primary-btn" onclick="smoothNavAnchor('personnel')">Meet Our Officials</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- OFFICIALS -->
+  <section id="personnel" class="personnel-section fade-in-section">
+    <h2 class="section-title">Barangay Officials</h2>
+    <p style="text-align:center;color:rgba(255,255,255,0.5);margin-top:-24px;margin-bottom:36px;font-size:.95rem;">Barangay 99 Zone 9 Dist. II — Caloocan City</p>
+
+    <!-- PUNONG BARANGAY -->
+    <div style="text-align:center;margin-bottom:28px;">
+      <span style="display:inline-block;background:linear-gradient(135deg,#1e73be,#0a2444);color:#fff;font-size:.82rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:7px 22px;border-radius:20px;">
+        <i class="fa-solid fa-star" style="margin-right:7px;"></i>Punong Barangay
+      </span>
+    </div>
+    <div class="personnel-grid" style="justify-items:center;margin-bottom:40px;">
+      <div class="person-card" style="max-width:240px;">
+        <img src="captain.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Danilo+Caldo&background=0f2f4f&color=fff&size=100'">
+        <h3>Danilo C. Caldo</h3><p>Punong Barangay</p>
+      </div>
+    </div>
+
+    <!-- ELECTED OFFICIALS LABEL -->
+    <div style="text-align:center;margin-bottom:28px;">
+      <span style="display:inline-block;background:linear-gradient(135deg,#1e73be,#0a2444);color:#fff;font-size:.82rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:7px 22px;border-radius:20px;">
+        <i class="fa-solid fa-vote-yea" style="margin-right:7px;"></i>Elected Officials
+      </span>
+    </div>
+
+    <!-- SK CHAIRMAN -->
+    <div class="personnel-grid" style="justify-items:center;margin-bottom:28px;">
+      <div class="person-card" style="max-width:240px;">
+        <img src="sk.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Jim+Castro&background=f57c00&color=fff&size=100'">
+        <h3>Jim Clarence M. Castro</h3><p>SK Chairman</p>
+      </div>
+    </div>
+
+    <!-- KAGAWAD SUBLABEL -->
+    <h3 style="text-align:center;color:rgba(255,255,255,0.6);margin-bottom:20px;font-size:.9rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;">Kagawad</h3>
+    <div class="personnel-grid" style="margin-bottom:40px;">
+      <div class="person-card"><img src="kagawad1.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Graceli+Cuento&background=1e73be&color=fff&size=100'"><h3>Graceli P. Cuento</h3><p>Kagawad</p></div>
+      <div class="person-card"><img src="kagawad2.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Antonio+Lopez&background=1e73be&color=fff&size=100'"><h3>Antonio P. Lopez Jr.</h3><p>Kagawad</p></div>
+      <div class="person-card"><img src="kagawad3.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Ma+Purisima+Armas&background=1e73be&color=fff&size=100'"><h3>Ma. Purisima R. Armas</h3><p>Kagawad</p></div>
+      <div class="person-card"><img src="kagawad4.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Lilian+Napenas&background=1e73be&color=fff&size=100'"><h3>Lilian A. Napeñas</h3><p>Kagawad</p></div>
+      <div class="person-card"><img src="kagawad5.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Concepcion+David&background=1e73be&color=fff&size=100'"><h3>Concepcion C. David</h3><p>Kagawad</p></div>
+      <div class="person-card"><img src="kagawad6.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Sanny+Herrera&background=1e73be&color=fff&size=100'"><h3>Sanny N. Herrera</h3><p>Kagawad</p></div>
+      <div class="person-card"><img src="kagawad7.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Daniel+Delos+Santos&background=1e73be&color=fff&size=100'"><h3>Daniel Delos Santos</h3><p>Kagawad</p></div>
+    </div>
+
+    <!-- APPOINTED OFFICIALS LABEL -->
+    <div style="text-align:center;margin-bottom:28px;">
+      <span style="display:inline-block;background:linear-gradient(135deg,#f57c00,#c45e00);color:#fff;font-size:.82rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:7px 22px;border-radius:20px;">
+        <i class="fa-solid fa-user-tie" style="margin-right:7px;"></i>Appointed Officials
+      </span>
+    </div>
+    <div class="personnel-grid">
+      <div class="person-card"><img src="secretary.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Emelina+Santos&background=f57c00&color=fff&size=100'"><h3>Emelina R. Santos</h3><p>Secretary</p></div>
+      <div class="person-card"><img src="treasurer.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Renato+Santos&background=f57c00&color=fff&size=100'"><h3>Renato S. Santos Jr.</h3><p>Treasurer</p></div>
+      <div class="person-card"><img src="caretaker.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Moreno+Lazaga&background=f57c00&color=fff&size=100'"><h3>Moreno S. Lazaga</h3><p>Caretaker</p></div>
+      <div class="person-card"><img src="exo.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Pepito+Sustituido&background=f57c00&color=fff&size=100'"><h3>Pepito Sustituido</h3><p>Ex-O</p></div>
+      <div class="person-card"><img src="vawc.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Marites+Dizon&background=f57c00&color=fff&size=100'"><h3>Marites R. Dizon</h3><p>Barangay VAWC</p></div>
+    </div>
+
+    <!-- LUPON TAGAPAMAYAPA -->
+    <div style="text-align:center;margin:48px 0 28px;">
+      <span style="display:inline-block;background:linear-gradient(135deg,#1b5e20,#43a047);color:#fff;font-size:.82rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:7px 22px;border-radius:20px;">
+        <i class="fa-solid fa-scale-balanced" style="margin-right:7px;"></i>Lupon Tagapamayapa
+      </span>
+    </div>
+    <p style="text-align:center;color:rgba(255,255,255,0.5);margin-top:-18px;margin-bottom:32px;font-size:.88rem;">Barangay Justice and Mediation Body</p>
+    <div class="personnel-grid" id="lupon-grid">
+      <div class="person-card"><img src="" onerror="this.src='https://ui-avatars.com/api/?name=Maria+Corazon+Amboy&background=1b5e20&color=fff&size=100'"><h3>Maria Corazon Amboy</h3><p>Lupon Member</p></div>
+      <div class="person-card"><img src="" onerror="this.src='https://ui-avatars.com/api/?name=Teresita+Aristoza&background=1b5e20&color=fff&size=100'"><h3>Teresita Aristoza</h3><p>Lupon Member</p></div>
+      <div class="person-card"><img src="" onerror="this.src='https://ui-avatars.com/api/?name=Edwin+Cabahug&background=1b5e20&color=fff&size=100'"><h3>Edwin Omac Cabahug</h3><p>Lupon Member</p></div>
+      <div class="person-card"><img src="" onerror="this.src='https://ui-avatars.com/api/?name=Grace+Cuaton&background=1b5e20&color=fff&size=100'"><h3>Grace Cuaton</h3><p>Lupon Member</p></div>
+      <div class="person-card"><img src="" onerror="this.src='https://ui-avatars.com/api/?name=Enrique+Dizon&background=1b5e20&color=fff&size=100'"><h3>Enrique Dizon</h3><p>Lupon Member</p></div>
+      <div class="person-card"><img src="" onerror="this.src='https://ui-avatars.com/api/?name=Neneitte+Eugenio&background=1b5e20&color=fff&size=100'"><h3>Neneitte Eugenio</h3><p>Lupon Member</p></div>
+      <div class="person-card"><img src="" onerror="this.src='https://ui-avatars.com/api/?name=Edilyn+Jamero+Mar&background=1b5e20&color=fff&size=100'"><h3>Edilyn Jamero Mar</h3><p>Lupon Member</p></div>
+      <div class="person-card"><img src="" onerror="this.src='https://ui-avatars.com/api/?name=Jerome+Nalda&background=1b5e20&color=fff&size=100'"><h3>Jerome Nalda</h3><p>Lupon Member</p></div>
+      <div class="person-card"><img src="" onerror="this.src='https://ui-avatars.com/api/?name=Mati+Ong&background=1b5e20&color=fff&size=100'"><h3>Mati Ong</h3><p>Lupon Member</p></div>
+      <div class="person-card"><img src="" onerror="this.src='https://ui-avatars.com/api/?name=Jonathan+Puzon&background=1b5e20&color=fff&size=100'"><h3>Jonathan Puzon</h3><p>Lupon Member</p></div>
+    </div>
+
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact-section fade-in-section">
+    <h2 class="section-title">Contact Us</h2>
+    <p style="text-align:center;color:var(--gray);margin-top:-28px;margin-bottom:52px;font-size:.95rem;">Reach out to Barangay 99 — we're here to help.</p>
+
+    <div class="contact-alt-grid">
+
+      <!-- BLOCK 1: Info (left, light bg) -->
+      <div class="contact-alt-block contact-alt-info">
+        <div class="contact-alt-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+        <h3>Barangay Information</h3>
+        <ul class="contact-info-list">
+          <li><i class="fa-solid fa-landmark"></i><span><strong>Barangay 99</strong> Zone 9 Dist. II, Caloocan City</span></li>
+          <li><i class="fa-solid fa-user-tie"></i><span><strong>Punong Barangay:</strong> Danilo C. Caldo</span></li>
+          <li><i class="fa-solid fa-envelope"></i><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="680a1a0f1151510c071a071c0d09280f05090104460b0705">[email&#160;protected]</a></span></li>
+          <li><i class="fa-solid fa-clock"></i><span>Mon – Fri, 8:00 AM – 5:00 PM</span></li>
+        </ul>
+      </div>
+
+      <!-- BLOCK 2: Form (right, white bg) -->
+      <div class="contact-alt-block contact-alt-form">
+        <div class="contact-alt-icon"><i class="fa-solid fa-paper-plane"></i></div>
+        <h3>Send Us a Message</h3>
+        <p style="color:var(--gray);font-size:.9rem;margin-bottom:22px;">We'll get back to you as soon as possible.</p>
+        <form class="contact-form-new" onsubmit="submitContactMessage(this);return false;">
+          <div class="contact-field-group">
+            <div class="contact-field">
+              <label>Your Name</label>
+              <input type="text" id="contactName" placeholder="e.g. Juan dela Cruz">
+            </div>
+            <div class="contact-field">
+              <label>Your Email</label>
+              <input type="email" id="contactEmail" placeholder="e.g. juan@email.com">
+            </div>
+          </div>
+          <div class="contact-field">
+            <label>Message</label>
+            <textarea id="contactMsg" rows="5" placeholder="Write your concern or message here..."></textarea>
+          </div>
+          <div id="contact-alert" class="alert"></div>
+          <button type="submit" class="contact-submit-btn"><i class="fa-solid fa-paper-plane"></i> Send Message</button>
+        </form>
+      </div>
+
+    </div>
+
+    <!-- CREATORS SECTION -->
+    <div class="creators-section">
+      <p class="creators-heading-label">Meet the Creators</p>
+      <h3 class="creators-heading">Website Developers</h3>
+      <p class="creators-sub">Students of University of Caloocan City — BSCS</p>
+      <div class="creators-cards-grid">
+        <div class="creator-profile-card">
+          <img src="images/devs/dev_angelo.jpg" class="creator-avatar" onerror="this.src='https://ui-avatars.com/api/?name=Angelo+Bejemino&background=1e73be&color=fff&size=100'" style="width:80px;height:80px;border-radius:50%;object-fit:cover;">
+          <div class="creator-name">Bejemino, Angelo C.</div>
+          <div class="creator-role"><i class="fa-solid fa-code"></i> Developer</div>
+        </div>
+        <div class="creator-profile-card">
+          <img src="images/devs/dev_lorraine.jpg" class="creator-avatar" onerror="this.src='https://ui-avatars.com/api/?name=Lorraine+Dizon&background=6c3483&color=fff&size=100'" style="width:80px;height:80px;border-radius:50%;object-fit:cover;">
+          <div class="creator-name">Dizon, Lorraine R.</div>
+          <div class="creator-role"><i class="fa-solid fa-code"></i> Developer</div>
+        </div>
+        <div class="creator-profile-card">
+          <img src="images/devs/dev_james.jpg" class="creator-avatar" onerror="this.src='https://ui-avatars.com/api/?name=James+Mangila&background=117a65&color=fff&size=100'" style="width:80px;height:80px;border-radius:50%;object-fit:cover;">
+          <div class="creator-name">Mangila, James Stephen N.</div>
+          <div class="creator-role"><i class="fa-solid fa-code"></i> Developer</div>
+        </div>
+        <div class="creator-profile-card">
+          <img src="images/devs/dev_steven.jpg" class="creator-avatar" onerror="this.src='https://ui-avatars.com/api/?name=Steven+Punay&background=b7770d&color=fff&size=100'" style="width:80px;height:80px;border-radius:50%;object-fit:cover;">
+          <div class="creator-name">Punay, Steven Kenn P.</div>
+          <div class="creator-role"><i class="fa-solid fa-code"></i> Developer</div>
+        </div>
+        <div class="creator-profile-card">
+          <img src="images/devs/dev_ivan.jpg" class="creator-avatar" onerror="this.src='https://ui-avatars.com/api/?name=Ivankaizer+Zaldivar&background=922b21&color=fff&size=100'" style="width:80px;height:80px;border-radius:50%;object-fit:cover;">
+          <div class="creator-name">Zaldivar, Ivankaizer P.</div>
+          <div class="creator-role"><i class="fa-solid fa-code"></i> Developer</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <h3>Barangay 99 Dorotea Community</h3>
+    <p>Barangay 99 Zone 9 Dist. II — Caloocan City. This Barangay Management System is designed to improve communication between residents and barangay officials.</p>
+    <div class="footer-creators" style="display:none;"></div>
+    <p class="copyright">© 2026 Barangay 99 Dorotea. All Rights Reserved.</p>
+  </footer>
+</section>
+
+</div>
+
+<script src="script.js"></script>
+<script>
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) { entry.target.classList.add('visible'); }
+    });
+  });
+  document.querySelectorAll('.fade-in-section').forEach(function(el) { observer.observe(el); });
+</script>
+</body></html>
